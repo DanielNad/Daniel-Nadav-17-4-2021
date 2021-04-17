@@ -16,8 +16,7 @@ export default function SearchBar() {
   useEffect(() => {
     if (query.trim()) {
       const timer = setTimeout(async () => {
-        const results = dispatch(autoComplete(query));
-        dispatch(updateSuggestions(results));
+        dispatch(autoComplete(query));
       }, 500);
       return () => clearTimeout(timer);
     }

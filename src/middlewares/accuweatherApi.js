@@ -4,7 +4,7 @@ import {
   updateCurrentCondition,
   update5DaysForecast,
 } from "../actions/forecastActions";
-import { updateQuery } from "../actions/searchActions";
+import { updateQuery, updateSuggestions } from "../actions/searchActions";
 import { updateError } from "../actions/errorActions";
 
 // TODO: Error handling
@@ -17,7 +17,7 @@ const autoComplete = (cityName) => async (dispatch) => {
       },
     });
     if (result.status !== 200 || !result?.data) throw new Error("Api error");
-    return result.data;
+    dispatch(updateSuggestions(result.data));
   } catch (error) {
     dispatch(updateError(true, error.message));
   }

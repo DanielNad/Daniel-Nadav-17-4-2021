@@ -27,10 +27,9 @@ export default function MainGridItem() {
   }, [favorites]);
 
   const handleClick = () => {
+    if (isFavorite) dispatch(removeFavorite(key));
+    else dispatch(addFavorite(key, { name, Temperature, WeatherIcon }));
     setIsFavorite((prevState) => !prevState);
-    isFavorite
-      ? dispatch(removeFavorite(key))
-      : dispatch(addFavorite(key, { name, Temperature, WeatherIcon }));
   };
 
   return (
