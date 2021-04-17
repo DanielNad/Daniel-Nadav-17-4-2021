@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateQuery, updateSuggestions } from "../actions/searchActions";
 import {
   getCurrentConditions,
+  get5DailyForecast,
   autoComplete,
 } from "../middlewares/accuweatherApi";
 import SuggestionList from "./SuggestionList";
@@ -15,12 +16,22 @@ export default function SearchBar() {
   useEffect(() => {
     if (query.trim()) {
       const timer = setTimeout(async () => {
-        const results = await autoComplete(query);
+        const results = dispatch(autoComplete(query));
         dispatch(updateSuggestions(results));
       }, 500);
       return () => clearTimeout(timer);
     }
   }, [query, dispatch]);
+
+  const handleInputChange = (e) => {
+    dispatch(updateQuery(e.target.value));
+    dispatch(updateSuggestions([]));
+  };
+
+  const handleClick = () => {
+    dispatch(getCurrentConditions());
+    dispatch(get5DailyForecast());
+  };
 
   return (
     <Container>
@@ -29,13 +40,15 @@ export default function SearchBar() {
           type="text"
           placeholder="Search Location..."
           value={query}
-          onChange={(e) => dispatch(updateQuery(e.target.value))}
+          onChange={handleInputChange}
         />
-        <Button type="submit" onClick={dispatch(getCurrentConditions())}>
+        <Button type="submit" onClick={handleClick}>
           Search
         </Button>
       </SearchContainer>
-      {suggestions.length > 0 && <SuggestionList data={suggestions} />}
+      {suggestions && suggestions.length > 0 && (
+        <SuggestionList data={suggestions} />
+      )}
     </Container>
   );
 }

@@ -1,0 +1,2 @@
+const UPDATE_ERROR = "UPDATE_ERROR";
+export { UPDATE_ERROR };

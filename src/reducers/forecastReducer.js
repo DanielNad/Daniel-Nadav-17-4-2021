@@ -6,8 +6,8 @@ import {
 
 const initialState = {
   key: "",
-  currentCondition: null,
-  fiveDaysForecast: [],
+  currentCondition: { name: "Tel Aviv" },
+  fiveDaysForecast: null,
 };
 
 export default function forecastReducer(state = initialState, action) {
@@ -15,9 +15,9 @@ export default function forecastReducer(state = initialState, action) {
     case UPDATE_KEY:
       return { ...state, key: action.payload };
     case UPDATE_CURRENT_CONDITION:
-      return { ...state, current: action.payload };
+      return { ...state, currentCondition: action.payload };
     case UPDATE_5_DAYS_FORECAST:
-      return { ...state, favorites: action.payload };
+      return { ...state, fiveDaysForecast: action.payload };
     default:
       return state;
   }

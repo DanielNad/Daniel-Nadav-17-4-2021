@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -14,6 +15,7 @@ export const SearchContainer = styled.div`
 `;
 
 export const Search = styled.input`
+  width: 60vw;
   outline: none;
   height: 35px;
   border: none;
@@ -29,7 +31,7 @@ export const Button = styled.button`
   height: 30px;
   border: none;
   border-radius: 30px;
-  right: 60px;
+  margin-left: -60px;
   background-color: #009ad8;
   transition: all 0.2s;
   color: white;

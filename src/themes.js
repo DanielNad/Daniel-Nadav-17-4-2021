@@ -5,6 +5,7 @@ export const lightTheme = {
   fontColor: "#000",
   input: "#1e202b",
   transition: "all 0.2s ease-in",
+  secondary: "#d8e3e7",
 };
 
 export const darkTheme = {
@@ -12,6 +13,7 @@ export const darkTheme = {
   fontColor: "#bfc1c8",
   input: "#fff",
   transition: "all 0.2s ease-in",
+  secondary: "#2a3356",
 };
 
 export const GlobalStyles = createGlobalStyle`
