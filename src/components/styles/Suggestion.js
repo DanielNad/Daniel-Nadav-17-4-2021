@@ -1,18 +1,30 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-// TODO: Hover, close onClick
+const hideReuslts = keyframes`
+0%{
+  opacity: 0
+}
+100%{
+opacity: 1
+}
+`;
 
 const Container = styled.li`
   cursor: pointer;
-  margin-top: 0.5rem;
-  padding-left: 2rem;
+  margin: 0.5rem 0;
   width: 100%;
-  transition: all 0.1s ease-in;
+  animation: ${hideReuslts};
+  animation-duration: 3s;
   &:hover {
-    overflow: hidden;
-    background-color: ${(props) => props.theme.secondary};
-    color: ${(props) => props.theme.input};
+    border: 0.1px solid;
+    border-radius: 10px;
+    border-color: ${(props) => props.theme.secondary};
+    background-color: ${(props) => props.theme.body};
   }
 `;
 
-export { Container };
+const Paragraph = styled.p`
+  margin: 0.5rem;
+`;
+
+export { Container, Paragraph };

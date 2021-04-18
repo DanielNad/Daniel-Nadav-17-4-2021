@@ -7,17 +7,23 @@ const dropdown = keyframes`
 
 export const Suggestions = styled.ul`
   position: absolute;
-  top: 77%;
-  padding: 0;
-  padding-bottom: 1rem;
-  margin-top: 0;
-  width: 50vw;
+  margin: 0 2rem;
+  max-height: 400px;
+  top: 60%;
+  width: 80%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   list-style-type: none;
+  background-color: #bfdbf7;
+  color: #022b3a;
   background-color: ${(props) => props.theme.input};
-  color: ${(props) => props.theme.body};
+  color: ${(props) => props.theme.fontColor};
   animation: ${dropdown};
-  animation-duration: 2s;
+  animation-duration: 1s;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;

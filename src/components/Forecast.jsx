@@ -10,6 +10,7 @@ export default function Forecast() {
   const { fiveDaysForecast, currentCondition } = useSelector(
     (state) => state.forecast
   );
+  const { hasError } = useSelector((state) => state.error);
 
   const data = fiveDaysForecast?.DailyForecasts?.slice(
     1,
@@ -19,13 +20,16 @@ export default function Forecast() {
   const render = fiveDaysForecast?.DailyForecasts?.length > 0;
 
   const renderHeaders = () => {
-    return data.map((day, index) => <GridHeader key={index} day={day.Date} />);
+    return data.map((day, index) => (
+      <GridHeader key={index++} index={index} day={day.Date} />
+    ));
   };
 
   const renderItems = () => {
     return data.map((day, index) => (
       <GridItem
         key={index}
+        index={index}
         minTemp={day?.Temperature?.Minimum?.Value}
         maxTemp={day?.Temperature?.Maximum?.Value}
         dayIcon={day?.Day?.Icon}
@@ -45,6 +49,6 @@ export default function Forecast() {
       {render > 0 && renderItems()}
     </Container>
   ) : (
-    <Loading />
+    <Loading hasError={hasError} />
   );
 }

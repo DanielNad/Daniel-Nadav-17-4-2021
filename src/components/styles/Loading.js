@@ -6,11 +6,13 @@ const Load = keyframes`
 `;
 
 const Loading = styled.div`
+  display: ${(props) => (props.hasError ? "none" : "inherit")};
+  margin-top: 2rem;
   border: 6px solid #f3f3f3;
   border-radius: 50%;
   border-top: 6px solid;
-  width: 50px;
-  height: 50px;
+  width: 5vh;
+  height: 5vh;
   animation: ${Load} 2s linear infinite;
 `;
 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Container = styled.nav`
   display: flex;
   justify-content: space-between;
-  margin: 3rem;
+  margin: 1rem 2rem;
 `;
 
 export const ItemsContainer = styled.div`

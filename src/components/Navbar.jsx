@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import { changeTheme } from "../actions/themeActions";
+import { changeTheme } from "../actionsCreators/themeActions";
 
 import appLogo from "../images/appLogo.png";
 

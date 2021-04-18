@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  text-align: center;
-  align-items: self-end;
+  margin-top: 3rem;
   display: grid;
-  width: 60vw;
-  height: 60vh;
+  width: 50%;
   grid-template-columns: 2fr repeat(4, 1fr);
   grid-template-rows: 1fr 4fr;
+  background-color: ${(props) => props.theme.input};
+  color: ${(props) => props.theme.fontColor};
+  border: 2px solid;
+  border-radius: 1em;
 `;
 
 const Header = styled.div`

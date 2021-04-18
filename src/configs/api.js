@@ -1,10 +1,17 @@
 import axios from "axios";
 
 const accuweather = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: process.env.REACT_APP_ACCUWEATHER_URL,
   params: {
-    apikey: process.env.REACT_APP_API_KEY,
+    apikey: process.env.REACT_APP_ACCUWEATHER_KEY,
   },
 });
 
-export default accuweather;
+const unsplash = axios.create({
+  baseURL: process.env.REACT_APP_UNSPLASH_URL,
+  params: {
+    client_id: process.env.REACT_APP_UNSPLASH_KEY,
+  },
+});
+
+export { accuweather, unsplash };

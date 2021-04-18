@@ -18,11 +18,11 @@ export const Search = styled.input`
   width: 60vw;
   outline: none;
   height: 35px;
-  border: none;
+  border: 2px solid;
   border-radius: 30px;
   padding-left: 2rem;
   background-color: ${(props) => props.theme.input};
-  color: ${(props) => props.theme.body};
+  color: ${(props) => props.theme.fontColor};
 `;
 
 export const Button = styled.button`

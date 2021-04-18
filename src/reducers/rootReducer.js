@@ -4,6 +4,7 @@ import forecastReducer from "./forecastReducer";
 import themeReducer from "./themeReducer";
 import searchReducer from "./searchReducer";
 import favoritesReducer from "./favoritesReducer";
+import backgroundImageReducer from "./backgroundImagesReducer";
 import errorReducer from "./errorReducer";
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   style: themeReducer,
   search: searchReducer,
   favorites: favoritesReducer,
+  images: backgroundImageReducer,
   error: errorReducer,
 });
 

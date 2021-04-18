@@ -1,13 +1,15 @@
-import accuweather from "../configs/api";
+import { accuweather, unsplash } from "../configs/api";
 import {
   updateKey,
   updateCurrentCondition,
   update5DaysForecast,
-} from "../actions/forecastActions";
-import { updateQuery, updateSuggestions } from "../actions/searchActions";
-import { updateError } from "../actions/errorActions";
-
-// TODO: Error handling
+} from "../actionsCreators/forecastActions";
+import {
+  updateQuery,
+  updateSuggestions,
+} from "../actionsCreators/searchActions";
+import { setImages } from "../actionsCreators/backgroundImageActions";
+import { updateError } from "../actionsCreators/errorActions";
 
 const autoComplete = (cityName) => async (dispatch) => {
   try {
@@ -35,23 +37,25 @@ const getUserLocation = (position) => {
           },
         }
       );
-      const { Key, LocalizedName } = result.data;
+      const { Key, LocalizedName, Country } = result.data;
       dispatch(updateKey(Key));
-      dispatch(updateQuery(LocalizedName));
+      dispatch(updateQuery(`${LocalizedName}, ${Country.LocalizedName}`));
       dispatch(getCurrentConditions());
       dispatch(get5DailyForecast());
+      dispatch(getBackgroundImages());
     } catch (error) {
       dispatch(updateError(true, error.message));
     }
   };
 };
 
-const getDefaultLocation = () => {
+const getDefaultLocation = (key, name) => {
   return async (dispatch) => {
-    dispatch(updateKey(215854));
-    dispatch(updateQuery("Tel Aviv"));
+    dispatch(updateKey(key));
+    dispatch(updateQuery(name));
     dispatch(getCurrentConditions());
     dispatch(get5DailyForecast());
+    dispatch(getBackgroundImages());
   };
 };
 
@@ -63,7 +67,8 @@ const getCurrentConditions = () => {
       if (key === null) throw new Error("No key was provided");
       const result = await accuweather(`/currentconditions/v1/${key}`);
       if (result.status !== 200 || !result?.data) throw new Error("Api error");
-      dispatch(updateCurrentCondition({ name: query, ...result.data[0] })); //TODO: Take what i'll need
+      dispatch(updateCurrentCondition({ name: query, ...result.data[0] }));
+      dispatch(getBackgroundImages());
     } catch (error) {
       dispatch(updateError(true, error.message));
     }
@@ -79,11 +84,31 @@ const get5DailyForecast = () => {
         `forecasts/v1/daily/5day/${key}?metric=true`
       );
       if (result.status !== 200 || !result?.data) throw new Error("Api error.");
-      dispatch(update5DaysForecast(result.data)); //TODO: Take what i'll need
+      dispatch(update5DaysForecast(result.data));
     } catch (error) {
       dispatch(updateError(true, error.message));
     }
   };
+};
+
+const getBackgroundImages = () => async (dispatch, getState) => {
+  try {
+    let city = getState().search.query;
+    city = city?.substr(city?.indexOf(","), city?.length);
+    if (!city) throw new Error("City not provided");
+    const result = await unsplash({
+      params: {
+        query: city,
+        per_page: "10",
+      },
+    });
+    if (result.status !== 200 || !result?.data?.results)
+      throw new Error("Api error");
+    const data = result.data.results.map((image) => image.urls.full);
+    dispatch(setImages(data));
+  } catch (error) {
+    dispatch(updateError(true, error.message));
+  }
 };
 
 export {
@@ -92,4 +117,5 @@ export {
   getDefaultLocation,
   getCurrentConditions,
   get5DailyForecast,
+  getBackgroundImages,
 };

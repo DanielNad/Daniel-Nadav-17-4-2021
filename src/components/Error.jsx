@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { updateError } from "../actions/errorActions";
-import { Container } from "./styles/Error";
+import { updateError } from "../actionsCreators/errorActions";
+import { Container, Err } from "./styles/Error";
 
 export default function Error({ message }) {
   const dispatch = useDispatch();
@@ -11,5 +11,9 @@ export default function Error({ message }) {
     }, 5000);
   }, [dispatch]);
 
-  return <Container>{message}</Container>;
+  return (
+    <Container>
+      <Err>{message}</Err>
+    </Container>
+  );
 }

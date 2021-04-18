@@ -3,7 +3,10 @@ import {
   REMOVE_FAVORITE,
 } from "../constants/favoritesActionType";
 
-export default function favoritesReducer(state = [], action) {
+const favorites = JSON.parse(localStorage.getItem("favorites"));
+const initialState = favorites === null ? [] : favorites;
+
+export default function favoritesReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_FAVORITE:
       return [...state, action.payload];

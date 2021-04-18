@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateQuery, updateSuggestions } from "../actions/searchActions";
+import { updateQuery, updateSuggestions } from "../actionsCreators/searchActions";
 import {
   getCurrentConditions,
   get5DailyForecast,
