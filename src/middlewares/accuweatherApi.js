@@ -104,7 +104,7 @@ const getBackgroundImages = () => async (dispatch, getState) => {
     });
     if (result.status !== 200 || !result?.data?.results)
       throw new Error("Api error");
-    const data = result.data.results.map((image) => image.urls.full);
+    const data = result.data.results.map((image) => image.urls.regular);
     dispatch(setImages(data));
   } catch (error) {
     dispatch(updateError(true, error.message));

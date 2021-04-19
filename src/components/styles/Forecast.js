@@ -32,7 +32,6 @@ const Grid = styled.div`
 `;
 
 export const ToggleContainer = styled.div`
-  background-color: ${(props) => props.theme.input};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -40,6 +39,10 @@ export const ToggleContainer = styled.div`
   border-radius: 10px;
   padding: 0 2%;
   margin: 2rem;
+  border: 2px solid;
+  border-radius: 6px;
+  background-color: ${(props) => props.theme.input};
+  color: ${(props) => props.theme.fontColor};
 `;
 
 const Header = styled.div`
