@@ -1,16 +1,20 @@
-import { useSelector } from "react-redux";
-import { Container, Header } from "./styles/Forecast";
+import { useSelector, useDispatch } from "react-redux";
+import { Container, Header, ToggleContainer, Grid } from "./styles/Forecast";
 import moment from "moment";
 import GridHeader from "./GridHeader";
 import MainGridItem from "./MainGridItem";
 import GridItem from "./GridItem";
+import { CheckBox, CheckBoxLabel } from "../components/styles/Navbar";
 import { Loading } from "./styles/Loading";
+import { toggleMetric } from "../actionsCreators/cToFActions";
 
 export default function Forecast() {
   const { fiveDaysForecast, currentCondition } = useSelector(
     (state) => state.forecast
   );
   const { hasError } = useSelector((state) => state.error);
+  const { temperature } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const data = fiveDaysForecast?.DailyForecasts?.slice(
     1,
@@ -23,6 +27,10 @@ export default function Forecast() {
     return data.map((day, index) => (
       <GridHeader key={index++} index={index} day={day.Date} />
     ));
+  };
+
+  const handleClick = () => {
+    dispatch(toggleMetric(!temperature));
   };
 
   const renderItems = () => {
@@ -40,13 +48,21 @@ export default function Forecast() {
 
   return fiveDaysForecast && currentCondition ? (
     <Container>
-      <Header>
-        <div>{moment().format("dddd")}</div>
-        <div>{moment().format("MMM Do")}</div>
-      </Header>
-      {render && renderHeaders()}
-      <MainGridItem />
-      {render > 0 && renderItems()}
+      <ToggleContainer>
+        <h6>Celsius</h6>
+        <CheckBox id="CtoF" type="checkbox" onClick={handleClick} />
+        <CheckBoxLabel htmlFor="CtoF" />
+        <h6>Fahrenheit</h6>
+      </ToggleContainer>
+      <Grid>
+        <Header>
+          <div>{moment().format("dddd")}</div>
+          <div>{moment().format("MMM Do")}</div>
+        </Header>
+        {render && renderHeaders()}
+        <MainGridItem />
+        {render > 0 && renderItems()}
+      </Grid>
     </Container>
   ) : (
     <Loading hasError={hasError} />
