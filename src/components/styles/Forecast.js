@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin-top: 3rem;
+  position: absolute;
+  top: 40%;
+  margin-top: 5%;
   display: grid;
   width: 50%;
   grid-template-columns: 2fr repeat(4, 1fr);
@@ -10,6 +12,10 @@ const Container = styled.div`
   color: ${(props) => props.theme.fontColor};
   border: 2px solid;
   border-radius: 1em;
+
+  @media screen and (max-width: 600px) {
+    top: 25%;
+  }
 `;
 
 const Header = styled.div`

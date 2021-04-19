@@ -6,7 +6,9 @@ const dropdown = keyframes`
 `;
 
 export const Suggestions = styled.ul`
-  position: absolute;
+  z-index: 1;
+  padding: 0;
+  position: relative;
   margin: 0 2rem;
   max-height: 400px;
   top: 60%;
@@ -20,6 +22,9 @@ export const Suggestions = styled.ul`
   color: ${(props) => props.theme.fontColor};
   animation: ${dropdown};
   animation-duration: 1s;
+  border: 1px solid;
+  border-radius: 3px;
+  border-top: none;
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-y: scroll;

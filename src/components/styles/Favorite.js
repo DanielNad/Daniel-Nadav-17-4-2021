@@ -11,12 +11,14 @@ const Container = styled.div`
   border-radius: 2em;
   border: 2px solid;
   border-color: ${(props) => props.theme.secondary};
+  text-align: center;
 `;
 
-export const Button = styled.button`
+const Button = styled.button`
+  font-size: 0.8em;
   position: relative;
   outline: none;
-  height: 30px;
+  height: 3vh;
   border: none;
   border-radius: 30px;
   background-color: #009ad8;
@@ -30,4 +32,4 @@ export const Button = styled.button`
   }
 `;
 
-export { Container };
+export { Container, Button };

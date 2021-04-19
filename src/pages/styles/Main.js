@@ -1,14 +1,17 @@
 import styled from "styled-components";
-import defaultBackground from "../../images/defaultBackground.jpg";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-image: url(${({ image }) => (image ? image : defaultBackground)});
-  padding: 5rem 0;
-  transition: all 2s linear;
+`;
+
+export const ToggleContainer = styled.div`
+  background-color: ${(props) => props.theme.input};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px none;
+  border-radius: 10px;
+  padding: 0 2%;
 `;

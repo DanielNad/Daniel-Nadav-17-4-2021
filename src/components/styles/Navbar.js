@@ -27,6 +27,7 @@ export const CheckBoxLabel = styled.label`
   height: 26px;
   border-radius: 15px;
   background: #bebebe;
+  margin: 0 1rem;
   cursor: pointer;
   &::after {
     content: "";
@@ -42,12 +43,13 @@ export const CheckBoxLabel = styled.label`
 `;
 
 export const CheckBox = styled.input`
+  display: none;
   opacity: 0;
   z-index: 1;
   border-radius: 15px;
   height: 26px;
   &:checked + ${CheckBoxLabel} {
-    background: #343f56;
+    background: ${(props) => props.theme.secondary};
     &::after {
       content: "";
       display: block;

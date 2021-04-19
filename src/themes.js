@@ -5,7 +5,7 @@ export const lightTheme = {
   fontColor: "#022b3a",
   input: "#bfdbf7",
   transition: "all 0.2s ease-in",
-  secondary: "#7fc8f8",
+  secondary: "#d8e3e7",
 };
 
 export const darkTheme = {

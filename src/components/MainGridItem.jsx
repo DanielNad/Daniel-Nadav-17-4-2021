@@ -4,6 +4,7 @@ import {
   addFavorite,
   removeFavorite,
 } from "../actionsCreators/favoritesActions";
+import cToF from "../utils/cToF";
 import { Image } from "./styles/Forecast";
 import {
   Container,
@@ -14,7 +15,8 @@ import {
 
 export default function MainGridItem() {
   const { key, currentCondition } = useSelector((state) => state?.forecast);
-  const favorites = useSelector((state) => state.favorites);
+  const { favorites } = useSelector((state) => state);
+  const { temperature } = useSelector((state) => state);
   const { name, Temperature, WeatherIcon } = currentCondition;
   const dispatch = useDispatch();
   const [isFavorite, setIsFavorite] = useState(false);
@@ -55,7 +57,7 @@ export default function MainGridItem() {
             alt="icon"
           />
         )}
-        <h5>{Temperature?.Metric?.Value + ", C"}</h5>
+        <h5>{cToF(Temperature?.Metric?.Value, temperature)}</h5>
       </InnerContainer>
     </Container>
   );

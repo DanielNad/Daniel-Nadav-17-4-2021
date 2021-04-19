@@ -11,8 +11,8 @@ opacity: 1
 
 const Container = styled.li`
   cursor: pointer;
-  margin: 0.5rem 0;
-  width: 100%;
+  width: 90%;
+  margin: 0.5rem 1rem;
   animation: ${hideReuslts};
   animation-duration: 3s;
   &:hover {
