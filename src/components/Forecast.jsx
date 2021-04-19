@@ -1,10 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Header, ToggleContainer, Grid } from "./styles/Forecast";
+import {
+  Container,
+  Header,
+  ToggleContainer,
+  Grid,
+  CheckBox,
+  CheckBoxLabel,
+} from "./styles/Forecast";
 import moment from "moment";
 import GridHeader from "./GridHeader";
 import MainGridItem from "./MainGridItem";
 import GridItem from "./GridItem";
-import { CheckBox, CheckBoxLabel } from "../components/styles/Navbar";
 import { Loading } from "./styles/Loading";
 import { toggleMetric } from "../actionsCreators/cToFActions";
 
@@ -50,7 +56,13 @@ export default function Forecast() {
     <Container>
       <ToggleContainer>
         <h6>Celsius</h6>
-        <CheckBox id="CtoF" type="checkbox" onClick={handleClick} />
+        <CheckBox
+          id="CtoF"
+          type="checkbox"
+          isCelsius={temperature}
+          onClick={handleClick}
+          defaultChecked={!temperature}
+        />
         <CheckBoxLabel htmlFor="CtoF" />
         <h6>Fahrenheit</h6>
       </ToggleContainer>
