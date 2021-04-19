@@ -11,8 +11,8 @@ const Container = styled.div`
   height: 70%;
 
   @media screen and (max-width: 600px) {
-    top: 20%;
-    height: 20%;
+    top: 30%;
+    height: 30vh;
   }
 `;
 
@@ -27,6 +27,7 @@ const Grid = styled.div`
 
   @media screen and (max-width: 600px) {
     top: 25%;
+    width: 70vw;
   }
 `;
 
