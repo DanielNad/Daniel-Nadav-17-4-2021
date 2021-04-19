@@ -4,7 +4,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: ${(props) => props.theme.secondary};
+  background-color: ${(props) => props.theme.input};
   color: ${(props) => props.theme.fontColor};
   padding: 2rem 0;
 `;
