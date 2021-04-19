@@ -11,7 +11,7 @@ const Container = styled.div`
   height: 70%;
 
   @media screen and (max-width: 600px) {
-    top: 150px;
+    top: 240px;
     height: 30vh;
   }
 `;
@@ -39,6 +39,7 @@ export const ToggleContainer = styled.div`
   border: 2px none;
   border-radius: 10px;
   padding: 0 2%;
+  margin: 2rem;
 `;
 
 const Header = styled.div`
