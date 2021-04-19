@@ -1,6 +1,5 @@
 {
   "name": "client",
-  "homepage": "https://DanielNad.github.io/Daniel-Nadav-17-4-2021/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
